@@ -1,4 +1,9 @@
-# od
+# od Offer / Demand ... Offre /Demande
+
+## Translation / Locale
+https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-vue-app-with-vue-i18n
+
+
 
 ## Project setup
 ```

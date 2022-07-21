@@ -1,0 +1,6 @@
+{
+    "hello": "Salut i18n dans un sigle file component!",
+    "welcome": "Bienvenue!",
+    "yes-button": "Oui",
+    "no-button": "Non!"
+}

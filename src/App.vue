@@ -2,11 +2,27 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> &nbsp;
+      <LocaleChanger/>
     </nav>
+    <HelloI18n/>
+
     <router-view/>
   </div>
 </template>
+
+<script>
+import HelloI18n from "./components/HelloI18n";
+import LocaleChanger from "./components/LocaleChanger";
+
+export default {
+  name: 'app',
+  components: {
+    HelloI18n,
+    LocaleChanger
+  }
+}
+</script>
 
 <style>
 #app {
