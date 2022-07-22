@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">List</router-link> |
+      <router-link to="/offer">{{$t('offer')}}</router-link> |
+      <router-link to="/demand">{{$t('demand')}}</router-link> |
       <router-link to="/about">About</router-link> &nbsp;
       <LocaleChanger/>
       <SolidLogin />
@@ -9,23 +11,23 @@
 
 
     <router-view/>
-    <OdList />
-    <HelloI18n/>
+    <!-- <OdList /> -->
+    <!-- <HelloI18n/> -->
   </div>
 </template>
 
 <script>
-import HelloI18n from "@/components/HelloI18n";
+// import HelloI18n from "@/components/HelloI18n";
 import LocaleChanger from "@/components/LocaleChanger";
-import OdList from "@/views/OdList";
+// import OdList from "@/views/OdList";
 import SolidLogin from "@/components/SolidLogin";
 
 export default {
   name: 'app',
   components: {
-    HelloI18n,
+    // HelloI18n,
     LocaleChanger,
-    OdList,
+    // OdList,
     SolidLogin
   }
 }
