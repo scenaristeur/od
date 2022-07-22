@@ -6,7 +6,7 @@ import {
   // getSolidDatasetWithAcl,
   //   //getPublicAccess,
   //   //getAgentAccess,
-  //   // getFile,
+  getFile,
   //   // isRawData,
   //   // getContentType,
   //   //saveFileInContainer,
@@ -57,13 +57,43 @@ const plugin = {
       const mainDataset = await getSolidDataset( path, { fetch: sc.fetch });
       console.log(mainDataset)
 
-      let things = await getThingAll(mainDataset)
+      let things = await getThingAll(mainDataset).filter(t => t.url != path)
       console.log(things)
+      let items = {} //things.map(t => {return {url: t.url}})
+      // items.forEach((item) => {
+      for (let t of things){
+        items[t.url] = await Vue.prototype.$getJsonItem(t.url)
+
+
+      }
+
+      store.commit('od/setItems', Object.values(items))
       // for await (const t of things){
       //   const ds = await getSolidDataset( t, { fetch: sc.fetch });
       //   console.log(ds)
       //
       // }
+    }
+
+    Vue.prototype.$getJsonItem = async function(url){
+      const file = await getFile(url, { fetch: sc.fetch });
+      return new Promise( function(resolve, reject) {
+
+        const reader = new FileReader();
+        reader.onload = async () => {
+          try {
+            //response =
+            // Resolve the promise with the response value
+            resolve(JSON.parse(reader.result));
+          } catch (err) {
+            reject(err);
+          }
+        };
+        reader.onerror = (error) => {
+          reject(error);
+        };
+        reader.readAsText(file);
+      });
     }
 
     // post at a generated url https://communitysolidserver.github.io/CommunitySolidServer/4.0/example-requests/
@@ -92,7 +122,7 @@ const plugin = {
       item.creator = {'@id': this.$store.state.solid.pod.webId, 'name': this.$store.state.solid.pod.name}
       console.log(item)
       const savedFile = await overwriteFile(
-        item.path,
+        item.url,
         new Blob([JSON.stringify(item)], { type: "application/ld+json" }),
         { contentType: "application/ld+json", fetch: sc.fetch }
       );

@@ -6,6 +6,7 @@
 const state = () => ({
   // doc: null
   path: "https://od.solidcommunity.net/public/experiments/",
+  items: []
 
 })
 
@@ -14,6 +15,9 @@ const mutations = {
     console.log("path",p)
     state.path = p
   },
+  setItems(state, i){
+    state.items = i
+  }
   // setPod(state, p){
   //   console.log("pod",p)
   //   state.pod = p

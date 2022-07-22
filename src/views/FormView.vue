@@ -7,6 +7,7 @@
     <div v-if="result!= null" ><b>{{result.label}}</b> file saved at <a :href="result.savedFile" target="_blank">
       {{result.savedFile}}
     </a>
+    <!-- {{result}} -->
   </div>
 
   {{formType}}<br>
@@ -30,29 +31,36 @@ export default {
   },
   created(){
     this.item.types = this.formType == "offer" ?
-    [{'@id': 'https://schema.org/Offer'}, {'@id': 'https://www.wikidata.org/wiki/Q542869'}] :
-    [{'@id': 'https://schema.org/Demand'}, {'@id': 'https://www.wikidata.org/wiki/Q4402708'}]
-  },
-  methods: {
-    reset(){
-      this.result = null
+    [
+      {'@id': 'https://schema.org/Offer', label: "Offer (schema.org)"}, {
+        '@id': 'https://www.wikidata.org/wiki/Q542869', label: "Supply (wikidata)"}
+      ] :
+      [
+        {'@id': 'https://schema.org/Demand', label: "Demand (schema.org)"},
+        {'@id': 'https://www.wikidata.org/wiki/Q4402708', label: "Demand (wikidata)"}
+      ]
     },
-    async save(){
-      console.log("save")
-      this.result = await this.$putItem(this.item)
-      this.item['@id'] =  undefined
-      this.item.label = undefined
+    methods: {
+      reset(){
+        this.result = null
+        this.item['@id'] =  undefined
+        this.item.label = undefined
+      },
+      async save(){
+        console.log("save")
+        this.result = await this.$putItem(this.item)
+
+      }
+    },
+    computed:{
+      session:{
+        get () { return this.$store.state.solid.session },
+        set (/*value*/) { /*this.updateTodo(value)*/ }
+      },
     }
-  },
-  computed:{
-    session:{
-      get () { return this.$store.state.solid.session },
-      set (/*value*/) { /*this.updateTodo(value)*/ }
-    },
   }
-}
-</script>
+  </script>
 
-<style>
+  <style>
 
-</style>
+  </style>
