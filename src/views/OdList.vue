@@ -10,12 +10,12 @@
     </template>
 
     <!-- <template #head()="scope">
-     <div class="text-nowrap">
-       Heading {{ scope.label }}
-     </div>
-   </template> -->
+    <div class="text-nowrap">
+    Heading {{ scope.label }}
+  </div>
+</template> -->
 
-  </b-table>
+</b-table>
 </div>
 </template>
 
@@ -49,6 +49,14 @@ export default {
         { offer_or_demand: "demand", troc_or_condition: "condition", price: 89, where: 'Garden Place, Paris', what: 'Apple' , date: "01/01/2021:18h30:34" , expire: "01/01/2020:18h30:34" },
         { offer_or_demand: "offer", troc_or_condition: "condition", price: 38, where: 'online', what: 'ipfs tuto' , date: "01/02/2020:18h30:34" , expire: "01/01/2020:18h30:34" },
       ]
+    }
+  },
+  created(){
+    this.getThings()
+  },
+  methods: {
+    getThings(){
+      this.$getThings(this.$store.state.od.path)
     }
   }
 }

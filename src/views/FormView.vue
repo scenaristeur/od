@@ -2,6 +2,10 @@
   <div>
     {{formType}}<br>
     {{item}}<br>
+
+    <b-input v-model="item.label" placeholder="label" />
+
+
     <b-button v-if="session!= null && session.webId != null" @click="save" variant="success">Save</b-button>
     <b-button v-else disabled variant = "warning">You must loggin to your pod to save </b-button>
   </div>
@@ -14,18 +18,23 @@ export default {
   data(){
     return{
       item: {
-        types: []
+        label: undefined,
+        '@id': undefined,
+        '@type': []
       }
     }
   },
   created(){
     this.item.types = this.formType == "offer" ?
-    ['https://schema.org/Offer', 'https://www.wikidata.org/wiki/Q542869'] :
-    ['https://schema.org/Demand', 'https://www.wikidata.org/wiki/Q4402708']
+    [{'@id': 'https://schema.org/Offer'}, {'@id': 'https://www.wikidata.org/wiki/Q542869'}] :
+    [{'@id': 'https://schema.org/Demand'}, {'@id': 'https://www.wikidata.org/wiki/Q4402708'}]
   },
   methods: {
-    save(){
+    async save(){
       console.log("save")
+      await this.$putItem(this.item)
+      this.item['@id'] =  undefined
+      this.item.label = undefined
     }
   },
   computed:{

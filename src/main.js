@@ -8,6 +8,8 @@ import i18n from './i18n'
 
 import SolidPlugin from './plugins/solid-plugin';
 Vue.use(SolidPlugin, {store: store});
+import OdPlugin from './plugins/od-plugin';
+Vue.use(OdPlugin, {store: store});
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
