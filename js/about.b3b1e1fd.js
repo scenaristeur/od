@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkod"]=self["webpackChunkod"]||[]).push([[443],{2851:function(t,e,u){u.r(e),u.d(e,{default:function(){return l}});var n=function(){var t=this;t._self._c;return t._m(0)},s=[function(){var t=this,e=t._self._c;return e("div",{staticClass:"about"},[e("h1",[t._v("This is an about page")]),e("a",{attrs:{href:"https://github.com/scenaristeur/od",target:"_blank"}},[t._v("Source code & Help")])])}],r=u(1001),a={},c=(0,r.Z)(a,n,s,!1,null,null,null),l=c.exports}}]);
+//# sourceMappingURL=about.b3b1e1fd.js.map
