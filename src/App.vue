@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> &nbsp;
       <LocaleChanger/>
+      <SolidLogin />
     </nav>
 
 
@@ -17,13 +18,15 @@
 import HelloI18n from "@/components/HelloI18n";
 import LocaleChanger from "@/components/LocaleChanger";
 import OdList from "@/views/OdList";
+import SolidLogin from "@/components/SolidLogin";
 
 export default {
   name: 'app',
   components: {
     HelloI18n,
     LocaleChanger,
-    OdList
+    OdList,
+    SolidLogin
   }
 }
 </script>

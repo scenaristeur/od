@@ -6,6 +6,9 @@ import store from './store'
 import VueI18n from 'vue-i18n'
 import i18n from './i18n'
 
+import SolidPlugin from './plugins/solid-plugin';
+Vue.use(SolidPlugin, {store: store});
+
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
