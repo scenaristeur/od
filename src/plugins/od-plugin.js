@@ -85,7 +85,8 @@ const plugin = {
       }
       item['@context'] = context
       item['@id'] == undefined ? item['@id'] = uuidv4() : ""
-      item.path = this.$store.state.od.path+item['@id']//+'.jsonld'
+      item.path = this.$store.state.od.path
+      item.url = this.$store.state.od.path+item['@id']//+'.jsonld'
       item.created == undefined ? item.created = Date.now() : ""
       item.updated = Date.now()
       item.creator = {'@id': this.$store.state.solid.pod.webId, 'name': this.$store.state.solid.pod.name}
