@@ -1,6 +1,10 @@
 {
-    "hello": "Salut i18n dans un sigle file component!",
-    "welcome": "Bienvenue!",
-    "yes-button": "Oui",
-    "no-button": "Non!"
+  "hello": "Salut i18n dans un sigle file component!",
+  "welcome": "Bienvenue!",
+  "yes-button": "Oui",
+  "no-button": "Non!",
+  "offer": "offre",
+  "demand": "demande",
+  "offerText": "Vous avez quelque chose dont vous ne voulez plus, vous construisez des trucs, avez des compétences que vous voulez donner ou vendre...",
+  "demandText": "Tu as besoin de quelque chose"
 }

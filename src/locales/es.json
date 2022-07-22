@@ -1,0 +1,10 @@
+{
+    "hello": "¡Hola, i18n en un solo componente de archivo!",
+    "welcome": "¡Bienvenidos!",
+    "yes-button": "Sí",
+    "no-button": "No!",
+    "offer": "oferta",
+    "demand": "solicitud",
+    "offerText": "Tienes algo que ya no quieres, construyes algunas cosas, tienes alguna habilidad que quieres dar o vender...",
+    "demandText": "Necesitas algo"
+}

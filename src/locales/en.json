@@ -2,5 +2,9 @@
     "hello": "Hello i18n in SFC test!",
     "welcome": "Welcome!",
     "yes-button": "Yes",
-    "no-button": "No!"
+    "no-button": "No!",
+    "offer": "offer",
+    "demand": "demand",
+    "offerText": "You have something that you don't want anymore, you build some stuff, have some skill that you want to give or sell...",
+    "demandText": "You need something"
 }

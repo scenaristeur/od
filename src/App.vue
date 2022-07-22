@@ -5,21 +5,25 @@
       <router-link to="/about">About</router-link> &nbsp;
       <LocaleChanger/>
     </nav>
-    <HelloI18n/>
+
 
     <router-view/>
+    <OdList />
+    <HelloI18n/>
   </div>
 </template>
 
 <script>
-import HelloI18n from "./components/HelloI18n";
-import LocaleChanger from "./components/LocaleChanger";
+import HelloI18n from "@/components/HelloI18n";
+import LocaleChanger from "@/components/LocaleChanger";
+import OdList from "@/views/OdList";
 
 export default {
   name: 'app',
   components: {
     HelloI18n,
-    LocaleChanger
+    LocaleChanger,
+    OdList
   }
 }
 </script>
