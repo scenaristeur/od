@@ -12,6 +12,7 @@ import OdPlugin from './plugins/od-plugin';
 Vue.use(OdPlugin, {store: store});
 
 import VueGun from 'vue-gun';
+import('gun/lib/load.js')
 Vue.use(VueGun, {
    //gun: gun, // must be passed in at `gun` key
    peers: ['https://spogg.herokuapp.com/gun',/*'http://localhost:9090/gun',*/ 'https://gun-manhattan.herokuapp.com/gun'/*, 'http://gunjs.herokuapp.com/gun/'*/] // run gun-starter-app on port 9090

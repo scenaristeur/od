@@ -66,7 +66,7 @@ const plugin = {
       for (let t of things){
         let json = await Vue.prototype.$getJsonItem(t.url)
         items[t.url] = json
-        this.$gun.get('od').get(t.url).put(array2object(json))
+        this.$gun.get('od-test').get(t.url).put(array2object(json))
         // this.$gun.get('od').put(array2object(json))
 
 
