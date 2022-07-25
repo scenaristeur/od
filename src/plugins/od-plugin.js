@@ -66,7 +66,7 @@ const plugin = {
       for (let t of things){
         let json = await Vue.prototype.$getJsonItem(t.url)
         items[t.url] = json
-        this.$gun.get('od-test').get(t.url).put(array2object(json))
+        this.$gun.get(store.state.od.gunRoot).get(t.url).put(array2object(json))
         // this.$gun.get('od').put(array2object(json))
 
 
@@ -126,15 +126,20 @@ const plugin = {
       item.updated = Date.now()
       item.creator = {'@id': this.$store.state.solid.pod.webId, 'name': this.$store.state.solid.pod.name}
       console.log(item)
-      const savedFile = await overwriteFile(
-        item.url,
-        new Blob([JSON.stringify(item)], { type: "application/ld+json" }),
-        { contentType: "application/ld+json", fetch: sc.fetch }
-      );
+      try{
+        const savedFile = await overwriteFile(
+          item.url,
+          new Blob([JSON.stringify(item)], { type: "application/ld+json" }),
+          { contentType: "application/ld+json", fetch: sc.fetch }
+        );
 
-      console.log(`File saved at ${getSourceUrl(savedFile)}`);
-      item.savedFile = `${getSourceUrl(savedFile)}`
-      return item
+        console.log(`File saved at ${getSourceUrl(savedFile)}`);
+        item.savedFile = `${getSourceUrl(savedFile)}`
+        return item
+      }catch(e){
+        alert (e)
+      }
+
 
     }
 

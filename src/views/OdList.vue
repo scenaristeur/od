@@ -87,6 +87,10 @@ computed:{
     get () { return this.$store.state.od.items },
     set (/*value*/) { /*this.updateTodo(value)*/ }
   },
+  // items:{
+  //   get () { return this.$store.state.od.vueState },
+  //   set (/*value*/) { /*this.updateTodo(value)*/ }
+  // },
 }
 }
 </script>

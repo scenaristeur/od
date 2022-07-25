@@ -6,14 +6,19 @@
 const state = () => ({
   // doc: null
   path: "https://od.solidcommunity.net/public/experiments/",
-  items: []
-
+  items: [],
+  gunRoot: 'od-test',
+  vueState:[]
 })
 
 const mutations = {
   setPath(state, p){
     console.log("path",p)
     state.path = p
+  },
+  setVueState(state, v){
+    console.log("vuestate",v)
+    state.vueState = v
   },
   setItems(state, i){
     state.items = i

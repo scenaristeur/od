@@ -30,40 +30,41 @@ export default {
     }
   },
   created() {
-    this.$gun.get('od-test').map().on((node, key) => {
+    let gunRoot = this.gunRoot
+    this.$gun.get(gunRoot).map().on((node, key) => {
       //      console.log(node,key)
       // add results straight to the Vue component state
       // and get updates when nodes are updated by GUN
 
-      let object = this.$gun.get('od-test/'+key)
-      console.log(object)
-      object.load(o => {
-
-        console.log("object",o)
-        this.vueState[key] = o
-      }
-    )
+    //   let object = this.$gun.get(gunRoot+'/'+key)
+    // //  console.log(object)
+    //   object.load(o => {
+    //
+    //   //  console.log("object",o)
+    //     this.vueState2[key] = o
+    //   }
+    // )
       // base.load(o => console.log(Array.from(o.data)))
-
-     node != null ? this.vueState2[key] = node : ""
+  //  this.$store.commit('od/setVueState', Object.values(this.vueState))
+     node != null ? this.vueState[key] = node : ""
       this.$forceUpdate();
     });
 
   },
   methods:{
     load(){
-      let base = this.$gun.get('od-test')
+      let base = this.$gun.get(this.gunRoot)
       base.load(o => console.log(o))
       base.load(o => console.log(Array.from(o.data)))
     },
     setToGun(){
-      this.$gun.get('od-test').get(this.key).set(this.data)
+      this.$gun.get(this.gunRoot).get(this.key).set(this.data)
       this.key = ""
       this.data = ""
       this.$forceUpdate();
     },
     remove(key){
-      this.$gun.get('od-test').get(key).put(null)
+      this.$gun.get(this.gunRoot).get(key).put(null)
       delete this.vueState[key]
         delete this.vueState2[key]
     }
@@ -71,7 +72,14 @@ export default {
   watch:{
     vueState(){
       this.$forceUpdate();
+
     }
+  },
+  computed:{
+    gunRoot:{
+      get () { return this.$store.state.od.gunRoot },
+      set (/*value*/) { /*this.updateTodo(value)*/ }
+    },
   }
 }
 </script>
