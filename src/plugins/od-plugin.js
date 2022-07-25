@@ -46,11 +46,13 @@ import { v4 as uuidv4 } from 'uuid';
 // import { WS, /*SOLID*/ } from "@inrupt/vocab-solid-common";
 //
 import * as sc from '@inrupt/solid-client-authn-browser'
+
 // https://communitysolidserver.github.io/CommunitySolidServer/4.0/example-requests/
 const plugin = {
   install(Vue, opts = {}) {
     let store = opts.store
     console.log(store)
+
 
     Vue.prototype.$getThings = async function(path){
       console.log(path)
@@ -62,7 +64,10 @@ const plugin = {
       let items = {} //things.map(t => {return {url: t.url}})
       // items.forEach((item) => {
       for (let t of things){
-        items[t.url] = await Vue.prototype.$getJsonItem(t.url)
+        let json = await Vue.prototype.$getJsonItem(t.url)
+        items[t.url] = json
+        this.$gun.get('od').get(t.url).put(array2object(json))
+        // this.$gun.get('od').put(array2object(json))
 
 
       }
@@ -133,8 +138,42 @@ const plugin = {
 
     }
 
+    // function array2object(arr){
+    //   var obj = {};
+    //   let Gun = window.Gun
+    //   Gun.list.map(arr, function(v,f,t){
+    //     console.log(v,f,t)
+    //     if(Gun.list.is(v) || Gun.obj.is(v)){
+    //       obj[f] = array2object(v);
+    //       return;
+    //     }
+    //     obj[f] = v;
+    //   });
+    //   return obj;
+    // }
 
+    function array2object(arr) {
+      // https://github.com/amark/gun/issues/231
+      const Gun = window.Gun
+      var obj = {}
+      Gun.list.map(arr, function(v, f, t) {
+console.log(v,f,t)
 
+        if (Gun.list.is(v) || Gun.obj.is(v)) {
+          obj[f] = array2object(v)
+          return
+        }
+        if (isNaN(f)) obj[f] = v
+        else obj[f - 1] = v
+      })
+      if (obj[0]) {
+        obj.length = Object.keys(obj)
+        .sort()
+        .pop()
+        obj.length++
+      }
+      return obj
+    }
 
   }
 }

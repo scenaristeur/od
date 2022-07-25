@@ -1,5 +1,8 @@
 <template>
   <div>
+    <GunTest />
+    <hr>
+
     <b-table striped hover responsive sticky-header
     :fields="fields"
     :items="items">
@@ -18,6 +21,7 @@
 
 </b-table>
 
+
 {{items}}
 
 
@@ -28,6 +32,11 @@
 
 export default {
   name: "OdList",
+  components: {
+  'GunTest': ()=>import('@/views/GunTest'),
+  // 'DataCaching': ()=>import('@/views/experiments/DataCaching'),
+  // 'LevelgraphJsonld': ()=>import('@/views/experiments/LevelgraphJsonld'),
+},
   data() {
     return {
       fields: [
